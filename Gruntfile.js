@@ -24,7 +24,7 @@ module.exports = function(grunt) {
           ready:/Starting\sserver/
       },
       cmd:'docker',
-      args:['run','--net=host', '--rm','-e','LAMBDA_ENDPOINT=http://localhost:9001','-e','DYNAMODB_ENDPOINT=http://localhost:8000','amazon/aws-stepfunctions-local']
+      args:['run','-p','8083:8083', '--rm','-e','LAMBDA_ENDPOINT=http://localhost:9001','-e','DYNAMODB_ENDPOINT=http://localhost:8000','amazon/aws-stepfunctions-local']
   },
   //Create the state machine based on statemachine.json
   create_state_machine:{
