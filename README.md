@@ -60,3 +60,7 @@ Running "run:execute_state_machine" (run) task
 
 Done.
 ```
+
+
+# Other considerations
+Some APIs, CLIs, etc., may require that a default AWS region be specified even when using local endpoints. It is advantageous to run 'aws config' to populate dummy credentials and a region.
