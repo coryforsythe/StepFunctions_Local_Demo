@@ -1,3 +1,5 @@
+const pathToStepFunctions="/Users/cforsyth/code/StepFunctionsLocal";
+
 module.exports = function(grunt) {
     grunt.initConfig({
     run: {
@@ -9,22 +11,13 @@ module.exports = function(grunt) {
     cmd:'sam',
     args:['local','start-lambda','--region','us-east-1','-p','9001']
 },
-    //Pulls the latest stepfunctions local
-    stepfunctions_local_pull:{
-        options:{
-            wait: true
-        },
-        cmd:'docker',
-        args:['pull','amazon/aws-stepfunctions-local']
-    },
     //Starts stepfunctions on port 8083 (deletes the container when done)
     stepfunctions_local:{
       options:{
-          wait: false,
-          ready:/Starting\sserver/
+          wait: false
       },
-      cmd:'docker',
-      args:['run','-p','8083:8083', '--rm','-e','LAMBDA_ENDPOINT=http://localhost:9001','-e','DYNAMODB_ENDPOINT=http://localhost:8000','amazon/aws-stepfunctions-local']
+      cmd:'java',
+      args:['-classpath',pathToStepFunctions,'-jar',pathToStepFunctions+'/StepFunctionsLocal.jar','-lambdaEndpoint','http://localhost:9001']
   },
   //Create the state machine based on statemachine.json
   create_state_machine:{
@@ -47,8 +40,7 @@ module.exports = function(grunt) {
     options:{
         wait: true
     },
-    cmd:'aws',
-    args:['stepfunctions','--region','us-east-1','--endpoint','http://localhost:8083', 'get-execution-history','--execution-arn','arn:aws:states:us-east-1:123456789012:execution:test:testRun']
+    exec:'status=$(aws stepfunctions --region us-east-1 --endpoint http://localhost:8083 describe-execution --execution-arn arn:aws:states:us-east-1:123456789012:execution:test:testRun | jq -r .status); echo "";echo "$status"; while [ "$status" == "RUNNING" ]; do status=$(aws stepfunctions --region us-east-1 --endpoint http://localhost:8083 describe-execution --execution-arn arn:aws:states:us-east-1:123456789012:execution:test:testRun | jq -r .status) && echo "..." && sleep 3; done'
 }
 }
    
@@ -59,8 +51,7 @@ module.exports = function(grunt) {
   grunt.registerTask('test', [
     //Start lambda
     'run:lambda_local',
-    //Pull latest version of StepFunctions Local and Start it
-    'run:stepfunctions_local_pull',
+    //Ask java to setup StepFunctions Local and Start it
     'run:stepfunctions_local',
     //Create state machine
     'run:create_state_machine',
