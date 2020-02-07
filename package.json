@@ -6,7 +6,7 @@
     "grunt-run": "^0.8.1"
   },
   "scripts": {
-    "test":"grunt test"
-    
+    "lambda":"sam local start-lambda --region us-east-1 -p 9001",
+    "test": "grunt test"
   }
 }

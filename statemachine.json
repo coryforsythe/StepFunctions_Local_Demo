@@ -4,25 +4,28 @@
     "States": {
       "CalculateTax": {
         "Type": "Task",
-        "Next":"CalculateTax1",
+        "Next":"wait_ten_seconds",
         "Resource": "arn:aws:lambda:::function:CalculateTaxFunction"
       },
-      "CalculateTax1": {
+      "wait_ten_seconds": {
+        "Type": "Wait",
+        "Seconds": 10,
+        "Next": "AnotherTask"
+      },
+      "AnotherTask": {
         "Type": "Task",
-        "Next":"CalculateTax2",
+        "Next":"SNS",
         "Resource": "arn:aws:lambda:::function:CalculateTaxFunction"
       },
-      "CalculateTax2": {
-        "Type": "Task",
-        "Next":"CalculateTax3",
-        "Resource": "arn:aws:lambda:::function:CalculateTaxFunction"
-      },
-      "CalculateTax3": {
-        "Type": "Task",
-        "Resource": "arn:aws:lambda:::function:CalculateTaxFunction",
-        "End": true
-      }
+      "SNS":{  
+        "Type":"Task",
+        "Resource":"arn:aws:states:::sns:publish",
+        "Parameters":{  
+           "TopicArn":"arn:aws:sns:us-east-1:123456789012:myTopic",
+           "Message":"Hello from Step Functions!"
+        },
+        "End":true
+     }
     }
   }
 
-  // us-east-1:123456789012 becomes your token for find/replace during multi-account deployment
