@@ -1,0 +1,12 @@
+{
+  "name": "sam-app",
+  "version": "1.0.0",
+  "devDependencies": {
+    "grunt": "^1.0.4",
+    "grunt-run": "^0.8.1"
+  },
+  "scripts": {
+    "test":"grunt test"
+    
+  }
+}

@@ -1,0 +1,28 @@
+{
+    "Comment": "A demo",
+    "StartAt": "CalculateTax",
+    "States": {
+      "CalculateTax": {
+        "Type": "Task",
+        "Next":"CalculateTax1",
+        "Resource": "arn:aws:lambda:::function:CalculateTaxFunction"
+      },
+      "CalculateTax1": {
+        "Type": "Task",
+        "Next":"CalculateTax2",
+        "Resource": "arn:aws:lambda:::function:CalculateTaxFunction"
+      },
+      "CalculateTax2": {
+        "Type": "Task",
+        "Next":"CalculateTax3",
+        "Resource": "arn:aws:lambda:::function:CalculateTaxFunction"
+      },
+      "CalculateTax3": {
+        "Type": "Task",
+        "Resource": "arn:aws:lambda:::function:CalculateTaxFunction",
+        "End": true
+      }
+    }
+  }
+
+  // us-east-1:123456789012 becomes your token for find/replace during multi-account deployment

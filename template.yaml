@@ -1,0 +1,13 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Globals:
+  Function:
+    Timeout: 30
+Resources:
+  CalculateTaxFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: CalculateTaxFunction
+      CodeUri: CalculateTax/
+      Handler: app.lambdaHandler
+      Runtime: nodejs12.x
