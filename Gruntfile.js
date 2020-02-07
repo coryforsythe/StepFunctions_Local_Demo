@@ -4,7 +4,7 @@ module.exports = function(grunt) {
    //Pulls the latest stepfunctions local
    lambda_local:{
     options:{
-        wait: true
+        wait: false
     },
     cmd:'sam',
     args:['local','start-lambda','--region','us-east-1','-p','9001']
