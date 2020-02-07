@@ -12,13 +12,14 @@ The AWS CLI is required to invoke the local stepfunctions endpoint.  Install it 
 The SAM CLI is required to run lambda functions locally during debug. Please follow the [steps to install the AWS SAM CLI](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install.html)
 
 **3: Install Java JDK** 
+
 Java is leveraged by the local engines supporting stepfunctions. Please follow the instructions to [Install Java](https://www.oracle.com/technetwork/java/javase/downloads/index.html)
 
 **4: Install StepFunctions**   
 
 Install step functions locally from [this link](https://docs.aws.amazon.com/step-functions/latest/dg/sfn-local.html) and then update Gruntfile.js so that ***pathToStepFunctions*** references the unzipped/untarred directory holding the jar files.
 
-**45 Install Node**
+**5: Install Node**
 
 This example uses Grunt, a task-runner for NodeJs.  As such, please ensure you have followed the instructions to [Install NodeJs](https://nodejs.org/en/download/)
 
