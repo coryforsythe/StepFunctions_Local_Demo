@@ -1,4 +1,5 @@
 const pathToStepFunctions="/Users/cforsyth/code/StepFunctionsLocal";
+const inputObj={sales:500};
 
 module.exports = function(grunt) {
     grunt.initConfig({
@@ -34,7 +35,7 @@ module.exports = function(grunt) {
         wait: true
     },
     cmd:'aws',
-    args:['stepfunctions','--region','us-east-1','--endpoint','http://localhost:8083', 'start-execution','--state-machine','arn:aws:states:us-east-1:123456789012:stateMachine:test','--name','testRun']
+    args:['stepfunctions','--region','us-east-1','--endpoint','http://localhost:8083', 'start-execution','--state-machine','arn:aws:states:us-east-1:123456789012:stateMachine:test','--name','testRun','--input',JSON.stringify(inputObj)]
 },
 'get_hist':{
     options:{

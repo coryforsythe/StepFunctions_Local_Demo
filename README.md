@@ -12,10 +12,13 @@ The SAM CLI is required to run lambda functions locally during debug. Please fol
 **3: Install Java JDK**
 Java is leveraged by the local engines supporting stepfunctions. Please follow the instructions to [Install Java](https://www.oracle.com/technetwork/java/javase/downloads/index.html)
 
-**4: Install Node**
+**4: Install StepFunctions** 
+Install step functions locally from [this link](https://docs.aws.amazon.com/step-functions/latest/dg/sfn-local.html) and then update Gruntfile.js so that ***pathToStepFunctions*** references the unzipped/untarred directory holding the jar files.
+
+**45 Install Node**
 This example uses Grunt, a task-runner for NodeJs.  As such, please ensure you have followed the instructions to [Install NodeJs](https://nodejs.org/en/download/)
 
-**5: Install Grunt Module**
+**6: Install Grunt Module**
 Once Node is installed, use the included NPM utility to install grunt
 
 ```
@@ -61,6 +64,5 @@ Running "run:execute_state_machine" (run) task
 Done.
 ```
 
-
-# Other considerations
+# Other considerations  
 Some APIs, CLIs, etc., may require that a default AWS region be specified even when using local endpoints. It is advantageous to run 'aws config' to populate dummy credentials and a region.
