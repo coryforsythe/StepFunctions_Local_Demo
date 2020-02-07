@@ -3,36 +3,43 @@ This is a demonstration for using SAM Local, along with StepFunctions local to d
 
 # Setup
 
-**1: Install the AWS CLI**. 
+**1: Install the AWS CLI**
+
 The AWS CLI is required to invoke the local stepfunctions endpoint.  Install it by [following the instructions here](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv1.html)
 
-**2: Install the AWS SAM CLI**. 
+**2: Install the AWS SAM CLI**
+
 The SAM CLI is required to run lambda functions locally during debug. Please follow the [steps to install the AWS SAM CLI](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install.html)
 
-**3: Install Java JDK**. 
+**3: Install Java JDK** 
 Java is leveraged by the local engines supporting stepfunctions. Please follow the instructions to [Install Java](https://www.oracle.com/technetwork/java/javase/downloads/index.html)
 
 **4: Install StepFunctions**   
+
 Install step functions locally from [this link](https://docs.aws.amazon.com/step-functions/latest/dg/sfn-local.html) and then update Gruntfile.js so that ***pathToStepFunctions*** references the unzipped/untarred directory holding the jar files.
 
-**45 Install Node**. 
+**45 Install Node**
+
 This example uses Grunt, a task-runner for NodeJs.  As such, please ensure you have followed the instructions to [Install NodeJs](https://nodejs.org/en/download/)
 
-**6: Install Grunt Module**. 
+**6: Install Grunt Module**
+
 Once Node is installed, use the included NPM utility to install grunt
 
 ```
 npm install -g grunt
 ```
 
-**5: Install local modules**. 
+**5: Install local modules**
+
 From the root directory of this repository, install the npm modules
 
 ```
 npm install
 ```
 
-# Running the test. 
+# Running the test
+
 To execute the test run the 'test' target of the Grunfile
 
 ```
@@ -65,4 +72,5 @@ Done.
 ```
 
 # Other considerations  
+
 Some APIs, CLIs, etc., may require that a default AWS region be specified even when using local endpoints. It is advantageous to run 'aws config' to populate dummy credentials and a region.
