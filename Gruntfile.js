@@ -1,7 +1,14 @@
 module.exports = function(grunt) {
     grunt.initConfig({
     run: {
-
+   //Pulls the latest stepfunctions local
+   lambda_local:{
+    options:{
+        wait: true
+    },
+    cmd:'sam',
+    args:['local','start-lambda','--region','us-east-1','-p','9001']
+},
     //Pulls the latest stepfunctions local
     stepfunctions_local_pull:{
         options:{
@@ -50,6 +57,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-run');
    
   grunt.registerTask('test', [
+    //Start lambda
+    'run:lambda_local',
     //Pull latest version of StepFunctions Local and Start it
     'run:stepfunctions_local_pull',
     'run:stepfunctions_local',
